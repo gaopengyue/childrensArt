@@ -1,0 +1,101 @@
+<!--miniprogram/pages/publisher/publisher.wxml-->
+<view class='publish'>
+  <view class="item-wrap">
+    <view class='title'>成品图</view>
+    <view class="add" bindtap="preUpload" data-id="1">
+      <image wx:if="{{!images['1']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['1']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="开始分享你的作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="1" maxlength="800"></textarea>
+  </view>
+
+  <view class="item-wrap" wx:if="{{images['1']}}">
+    <view class='title'>步骤一</view>
+    <view class="add" bindtap="preUpload" data-id="2">
+      <image wx:if="{{!images['2']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['2']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="2" maxlength="800"></textarea>
+  </view>
+
+  <view class="item-wrap" wx:if="{{images['2']}}">
+    <view class='title'>步骤二</view>
+    <view class="add" bindtap="preUpload" data-id="3">
+      <image wx:if="{{!images['3']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['3']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="3" maxlength="800"></textarea>
+  </view>
+
+  <view class="item-wrap" wx:if="{{images['3']}}">
+    <view class='title'>步骤三</view>
+    <view class="add" bindtap="preUpload" data-id="4">
+      <image wx:if="{{!images['4']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['4']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="4" maxlength="800"></textarea>
+  </view>
+
+  <view class="item-wrap" wx:if="{{images['4']}}">
+    <view class='title'>步骤四</view>
+    <view class="add" bindtap="preUpload" data-id="5">
+      <image wx:if="{{!images['5']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['5']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="5" maxlength="800"></textarea>
+  </view>
+
+  <view class="item-wrap" wx:if="{{images['5']}}">
+    <view class='title'>步骤五</view>
+    <view class="add" bindtap="preUpload" data-id="6">
+      <image wx:if="{{!images['6']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['6']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="6" maxlength="800"></textarea>
+  </view>
+
+  <view class="item-wrap" wx:if="{{images['6']}}">
+    <view class='title'>步骤六</view>
+    <view class="add" bindtap="preUpload" data-id="7">
+      <image wx:if="{{!images['7']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['7']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="7" maxlength="800"></textarea>
+  </view>
+
+  <view class="item-wrap" wx:if="{{images['7']}}">
+    <view class='title'>步骤七</view>
+    <view class="add" bindtap="preUpload" data-id="8">
+      <image wx:if="{{!images['8']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['8']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="8" maxlength="800"></textarea>
+  </view>
+
+  <view class="item-wrap" wx:if="{{images['8']}}">
+    <view class='title'>步骤八</view>
+    <view class="add" bindtap="preUpload" data-id="9">
+      <image wx:if="{{!images['9']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['9']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="9" maxlength="800"></textarea>
+  </view>
+  <view class="item-wrap" wx:if="{{images['9']}}">
+    <view class='title'>步骤九</view>
+    <view class="add" bindtap="preUpload" data-id="10">
+      <image wx:if="{{!images['10']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['10']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="10" maxlength="800"></textarea>
+  </view>
+
+  <view class="item-wrap" wx:if="{{images['10']}}">
+    <view class='title'>步骤十</view>
+    <view class="add" bindtap="preUpload" data-id="11">
+      <image wx:if="{{!images['11']}}" class="add-image" src="/images/add.png"></image>
+      <image wx:else src="{{images['11']}}" mode="widthFix"></image>
+    </view>
+    <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="11" maxlength="800"></textarea>
+  </view>
+  <view class='btn'>发布</view>
+</view>
