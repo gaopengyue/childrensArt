@@ -1,0 +1,11 @@
+<!--components/scheduleList/scheduleList.wxml-->
+<view class='schedule-list'>
+  <view class='item' wx:for="{{queryResult}}" wx:key="{{index}}">
+    <view class='img-wrap'><image src="{{item.data.list[0].image}}" mode='widthFix'></image></view>
+    <view class='text'>{{item.data.list[0].desc}}</view>
+    <view class='info'>
+      <view class='tag'>{{item.data.tag}}</view>
+      <view class=''>赞</view>
+    </view>
+  </view>
+</view>

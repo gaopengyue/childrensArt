@@ -1,2 +1,30 @@
 <!--miniprogram/pages/index/index.wxml-->
-<text>miniprogram/pages/index/index.wxml</text>
+<view>
+  <!-- nav -->
+  <view class="nav-wrap">
+    <view class="nav">
+      <view class="nav-text">
+        <view bindtap="tapNav" data-current="0" class="{{current == 0 ? 'on' : ''}}">为你推荐</view>
+        <view bindtap="tapNav" data-current="1" class="{{current == 1 ? 'on' : ''}}">喜欢</view>
+      </view>
+      <view class="line" style="transform: translateX({{100 * current}}%)"></view>
+    </view>
+  </view>
+
+  <!-- content -->
+  <view class="content">
+    <swiper duration="300" current="{{current}}" bindchange="swiperChange">
+      <swiper-item>
+        <scroll-view scroll-y>
+          <schedule-list queryResult="{{queryResult}}"></schedule-list>
+          <navigator url='/pages/publisher/publisher'>发布器</navigator>
+        </scroll-view>
+      </swiper-item>
+      <swiper-item>
+        <scroll-view scroll-y>
+          喜欢的
+        </scroll-view>
+      </swiper-item>
+    </swiper>
+  </view>
+</view>

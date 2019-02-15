@@ -1,7 +1,7 @@
 /**app.wxss**/
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-sizing: border-box;
-} 
+.red {
+  color: #ea4148 !important;
+}
+.bg-red {
+  background-color: #ea4148 !important;
+}

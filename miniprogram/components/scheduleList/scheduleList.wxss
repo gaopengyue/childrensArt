@@ -1,0 +1,29 @@
+/* components/scheduleList/scheduleList.wxss */
+.schedule-list {
+  /*定义列数*/
+	column-count: 2;
+	/*列间距*/
+	column-gap: 16rpx;
+  margin: 16rpx;
+}
+.schedule-list .item {
+  break-inside: avoid;
+  background: #fff;
+  margin-bottom: 16rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+  transition: opacity .3s ease-in-out;
+  box-shadow: 0 0 16rpx 0 rgba(0,0,0,0.1);
+}
+.schedule-list .item image {
+	width: 100%;
+  display: block;
+}
+.schedule-list .item .img-wrap {
+  break-inside: avoid;
+  max-height: 450rpx;
+  overflow: hidden;
+}
+.schedule-list .item .text {
+
+}

@@ -1,1 +1,58 @@
 /* miniprogram/pages/index/index.wxss */
+.nav-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 102rpx;
+  background-color: #fff;
+  box-shadow: 0 8rpx 10rpx 0 rgba(0,0,0,0.01);
+}
+.nav {
+  position: relative;
+  margin: 0 120rpx;
+}
+.nav-text {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.nav-text view {
+  flex: 1;
+  padding: 30rpx 0;
+  font-size: 30rpx;
+  color: #646464;
+}
+.nav-text view.on {
+  color: #ea4148;
+  font-weight: bold;
+}
+.line {
+  position: absolute;
+  bottom: 12rpx;
+  left: 0;
+  width: 50%;
+  height: 6rpx;
+  transition: transform .2s;
+}
+.line:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 36%;
+  height: 100%;
+  border-radius: 200rpx;
+  background-image: linear-gradient(to right,rgba(234, 65, 72, .5),rgba(234, 65, 72, 1))
+}
+.content swiper {
+  height: 100vh;
+  background: #fafafa;
+}
+.content scroll-view {
+  height: 100vh;
+  padding-top: 102rpx;
+  box-sizing: border-box;
+}
