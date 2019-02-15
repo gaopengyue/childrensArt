@@ -1,5 +1,8 @@
 <!--miniprogram/pages/publisher/publisher.wxml-->
 <view class='publish'>
+  <picker class='picker' range="{{tagArray}}" value="{{index}}" bindchange="selectTag">
+    选择标签：{{tagArray[index]}}
+  </picker>
   <view class="item-wrap">
     <view class='title'>成品图</view>
     <view class="add" bindtap="preUpload" data-id="1">
@@ -97,5 +100,5 @@
     </view>
     <textarea placeholder="作品描述…" placeholder-style="color: #ccc" bindinput="descInput" data-id="11" maxlength="800"></textarea>
   </view>
-  <view class='btn'>发布</view>
+  <view class='btn' bindtap='submit'>发布</view>
 </view>

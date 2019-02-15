@@ -2,6 +2,12 @@
 .publish {
   padding-bottom: 60rpx;
 }
+.picker {
+  padding: 28rpx;
+  color: #666;
+  border-bottom: 1rpx solid #efefef;
+
+}
 .title {
   padding: 28rpx 28rpx 0;
   border-top: 1rpx solid #efefef;

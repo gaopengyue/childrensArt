@@ -6,7 +6,9 @@ Page({
    */
   data: {
     values: {},
-    images: {}
+    images: {},
+    tagArray: ['手工', '绘画', '折纸', '游戏'],
+    index: 0
   },
 
   /**
@@ -14,6 +16,12 @@ Page({
    */
   onLoad (options) {
 
+  },
+  // 选择标签
+  selectTag(e) {
+    this.setData({
+      index: e.detail.value
+    })
   },
   descInput(e) {
     let id = e.target.dataset.id
@@ -28,52 +36,91 @@ Page({
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
       success: res => {
-        console.log(res, e)
         let id = e.currentTarget.dataset.id
         let src = res.tempFilePaths[0]
         this.data.images[id] = src
         this.setData({
           images: this.data.images
         })
-        console.log()
       },
       fail: e => {
         console.error(e)
       }
     })
   },
-  doUpload() {
+  // 上传图片
+  doUpload(filePath) {
+    console.log(filePath, 999)
+    return wx.cloud.uploadFile({
+      cloudPath: new Date().getTime() + filePath.match(/\.[^.]+?$/)[0],
+      filePath
+    })
+  },
+  submit() {
+    
+     
+    let tasks = []
+    let imgKey = Object.keys(this.data.images)
+    if (!imgKey.length) {
+      console.log(1000000000000000)
+      return
+    }
     wx.showLoading({
       title: '上传中',
     })
-
-    const filePath = res.tempFilePaths[0]
-
-    // 上传图片
-    const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
-    wx.cloud.uploadFile({
-      cloudPath,
-      filePath,
-      success: res => {
-        console.log('[上传文件] 成功：', res)
-
-        app.globalData.fileID = res.fileID
-        app.globalData.cloudPath = cloudPath
-        app.globalData.imagePath = filePath
-
-        wx.navigateTo({
-          url: '../storageConsole/storageConsole'
-        })
+    imgKey.forEach(item => {
+      tasks.push(this.doUpload(this.data.images[item]))
+    })
+    Promise.all(tasks).then(res => {
+      console.log(res, '上传成功')
+      res.length && res.forEach((item, index) => {
+        let i = index + 1 + ''
+        this.data.images[i] = item.fileID
+      })
+      this.formatData()
+      wx.hideLoading()
+    }).catch(err => {
+      console.log(err)
+      wx.hideLoading()
+    })
+  },
+  formatData() {
+    let imgKey = Object.keys(this.data.images)
+    let res = {
+      tag: this.data.tagArray[this.data.index],
+      list: []
+    }
+    imgKey.forEach((key, index) => {
+      let i = index + 1 + ''
+      res.list.push({
+        image: this.data.images[i],
+        desc: this.data.values[i]
+      })
+    })
+    console.log(res, 'res')
+    this.saveDB(res)
+  },
+  saveDB(data) {
+    const db = wx.cloud.database()
+    db.collection('artList').add({
+      data: {
+        data,
+        // userInfo: app.globalData.userInfo
       },
-      fail: e => {
-        console.error('[上传文件] 失败：', e)
+      success: res => {
+        wx.showToast({ title: '发布成功' })
+        setTimeout(() => {
+          wx.redirectTo({
+            url: '/pages/index/index'
+          })
+        }, 1000)
+      },
+      fail: err => {
+        console.log(err)
         wx.showToast({
           icon: 'none',
-          title: '上传失败',
+          title: '发布失败'
         })
-      },
-      complete: () => {
-        wx.hideLoading()
       }
     })
   }
