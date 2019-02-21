@@ -7,7 +7,8 @@
     "pages/addFunction/addFunction",
     "pages/deployFunctions/deployFunctions",
     "pages/chooseLib/chooseLib",
-    "pages/publisher/publisher"
+    "pages/publisher/publisher",
+    "pages/detail/detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",

@@ -1,0 +1,26 @@
+<!--miniprogram/pages/detail/detail.wxml-->
+<view class='detail'>
+  <swiper style='height: {{swiperHeight}}rpx' current='{{current}}' bindchange='swiperChange' duration='300' indicator-dots>
+    <swiper-item>
+      <image bindload='imgLoad' bindtap='preview' data-src='cloud://pre-e76022.7072-pre-e76022/1550225993281.jpg' data-id='0' src='cloud://pre-e76022.7072-pre-e76022/1550225993281.jpg' mode='widthFix'></image>
+    </swiper-item>
+  </swiper>
+  <view class='dots'>1/8</view>
+  <view class='text'>
+    介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍介绍
+  </view>
+  <view class='panel'>
+    <button open-type='share'>分享</button>
+    <view>
+      <view class='likes' bindtap='likes'>喜欢</view>
+      <!-- <view class='comments'>评价</view> -->
+    </view>
+  </view>
+  <!-- <view class='comments-list'>
+    <view class='item'>
+      <text>评价人：</text>评语评语评语
+    </view>
+    <view class='tips'>查看354条评论</view>
+  </view>
+  <navigator>添加评论...</navigator> -->
+</view>

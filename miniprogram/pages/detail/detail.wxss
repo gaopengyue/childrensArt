@@ -1,0 +1,36 @@
+/* miniprogram/pages/detail/detail.wxss */
+.detail {
+  position: relative;
+}
+.detail .dots {
+  font-size: 20rpx;
+  color: #fff;
+  background: rgba(0,0,0,.5);
+  padding: 3rpx 14rpx;
+  border-radius: 20rpx;
+  position: absolute;
+  top: 28rpx;
+  right: 28rpx;
+}
+.detail swiper image {
+  width: 100%;
+}
+.text {
+  padding: 28rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+.panel {
+  padding: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.panel button {
+  border: 0;
+  background-color: transparent;
+  
+}
+.panel button:after {
+  border: 0;
+}

@@ -62,7 +62,7 @@ Page({
     let tasks = []
     let imgKey = Object.keys(this.data.images)
     if (!imgKey.length) {
-      console.log(1000000000000000)
+      wx.showToast({ title: '不能发布空白项目' })
       return
     }
     wx.showLoading({

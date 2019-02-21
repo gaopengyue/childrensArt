@@ -5,7 +5,7 @@
 .picker {
   padding: 28rpx;
   color: #666;
-  border-bottom: 1rpx solid #efefef;
+  margin-right: 200rpx;
 
 }
 .title {
@@ -44,17 +44,15 @@ textarea {
   height: 200rpx;
 }
 .btn {
-  /* position: fixed;
-  left: 50%; */
-  /* margin-left: -100rpx; */
-  /* bottom: 50rpx; */
-  width: 200rpx;
-  height: 70rpx;
-  line-height: 70rpx;
-  font-size: 30rpx;
+  position: fixed;
+  right: 28rpx;
+  top: 0rpx;
+  width: 180rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
   color: #fff;
   background-color: red;
   text-align: center;
   border-radius: 100rpx;
-  margin-top: 30rpx;
+  margin-top: 28rpx;
 }
