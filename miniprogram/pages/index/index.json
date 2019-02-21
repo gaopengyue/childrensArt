@@ -1,5 +1,4 @@
 {
-  "navigationBarTitleText": "",
   "usingComponents": {
     "schedule-list": "/components/scheduleList/scheduleList"
   }

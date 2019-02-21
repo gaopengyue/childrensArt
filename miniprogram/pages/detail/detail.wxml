@@ -8,14 +8,16 @@
   <view class='dots'>{{current + 1}}/{{detail.length}}</view>
   <view class='text'>{{detail[current].desc}}</view>
   <view class='panel'>
-    <button open-type='share' class='share'>分享</button>
+    <button open-type='share' class='share'>
+      <image src='/images/share.png'></image>
+    </button>
     <view class='likes'>
-      <view wx:if="{{userInfo}}">
-        <!-- liked: true 执行不喜欢，false 喜欢  -->
-        <view wx:if='{{liked}}' bindtap='changeLikes'>不喜欢{{liked}}</view>
-        <view wx:else bindtap='changeLikes'>喜欢{{liked}}</view>
+      <view bindtap='likesController'>
+        <image wx:if='{{liked}}' src='/images/like_fill.png'></image>
+        <image wx:else src='/images/like.png'></image>
+        <!-- <view>123</view> -->
       </view>
-      <button wx:else open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="submit">登录</button>
+      <button wx:if="{{!userInfo}}" open-type="getUserInfo" bindgetuserinfo="onGetUserInfo" class="submit"></button>
       
       <!-- <view class='comments'>评价</view> -->
     </view>

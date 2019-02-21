@@ -1,18 +1,12 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
     "pages/publisher/publisher",
     "pages/detail/detail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "QuickStart",
+    "navigationBarTitleText": "儿童艺术家",
     "navigationBarTextStyle": "black"
   }
 }

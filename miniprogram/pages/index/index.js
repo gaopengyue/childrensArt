@@ -8,19 +8,29 @@ Page({
    */
   data: {
     current: 0,
-    queryResult: null
+    queryResult: null,
+    likes: null,
+    likeList: null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    db.collection('artList').limit(20).get({
+    db.collection('artList').limit(100).get({
       success: res => {
         this.setData({
-          queryResult: res.data,
+          queryResult: res.data
         })
-        console.log(res.data, 222)
+        wx.getStorage({
+          key: 'artOpenId',
+          success: res => {
+            if (res.data) {
+              app.globalData.openid = res.data
+              this.fetchLikes()
+            }
+          }
+        })
       },
       fail: err => {
         wx.showToast({
@@ -29,15 +39,13 @@ Page({
         })
       }
     })
+    
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
+  onShow() {
+    if (app.globalData.openid && this.data.queryResult) {
+      this.fetchLikes()
+    }
   },
-
   /**
    * 用户点击右上角分享
    */
@@ -50,9 +58,29 @@ Page({
     })
   },
   tapNav(e) {
-    console.log(e)
     this.setData({
       current: e.target.dataset.current
+    })
+  },
+  fetchLikes() {
+    db.collection('likes').where({
+      _openid: app.globalData.openid
+    }).get({
+      success: res => {
+        this.data.likes = res.data
+        this.data.queryResult.forEach(el => {
+          el.like = false
+        })
+        this.data.likes.forEach(item => {
+          this.data.queryResult.forEach(el => {
+            if (item.likeId == el._id) {
+              el.like = item.likeId == el._id
+            }
+          })
+        })
+        let likeList = this.data.queryResult.filter(item => item.like)
+        this.setData({ queryResult: this.data.queryResult, likeList })
+      }
     })
   }
 })

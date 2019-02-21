@@ -22,7 +22,7 @@
       </swiper-item>
       <swiper-item>
         <scroll-view scroll-y>
-          喜欢的
+          <schedule-list queryResult="{{likeList}}" isLike="1"></schedule-list>
         </scroll-view>
       </swiper-item>
     </swiper>

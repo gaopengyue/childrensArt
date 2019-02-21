@@ -39,7 +39,31 @@
 .share {
   width: 100rpx;
 }
+.share image {
+  width: 45rpx;
+  height: 45rpx;
+}
 .panel > view {
   display: flex;
   align-items: center;
+}
+.likes {
+  position: relative;
+}
+.likes > view {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+}
+.likes image {
+  width: 45rpx;
+  height: 45rpx;
+  padding-right: 6rpx;
+}
+.likes button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200rpx;
+  height: 100rpx;
 }

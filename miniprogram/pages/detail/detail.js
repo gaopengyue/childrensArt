@@ -7,22 +7,23 @@ Page({
    * 页面的初始数据
    */
   data: {
+    detail: null,
     swiperHeight: 500,
     current: 0,
     heightTemp: {},
     screenWidth: 750,
+
     liked: false,
     userInfo: null,
-    id: '',
-    detail: null,
-    likes: [], // 收藏结果
+    likedId: '',
+    likes: null, // 收藏结果
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.id = options.id
+    this.data.likeId = options.id
     this.fetchDetail()
     this.getScreenWidth()
     this.getUserInfo()
@@ -34,7 +35,7 @@ Page({
     }
   },
   fetchDetail() {
-    db.collection('artList').doc(this.id).get({
+    db.collection('artList').doc(this.data.likeId).get({
       success: res => {
         this.setData({
           detail: res.data.data.list,
@@ -42,8 +43,7 @@ Page({
         wx.setNavigationBarTitle({
           title: res.data.data.tag
         })
-        this.checkLikes()
-        console.log(res.data, 222)
+        this.checkLikes(null, 'onload')
       },
       fail: err => {
         wx.showToast({
@@ -70,6 +70,11 @@ Page({
   imgLoad(e) {
     let rate = e.detail.width / e.detail.height
     this.data.heightTemp[e.currentTarget.dataset.id] = this.data.screenWidth / rate
+    if (e.currentTarget.dataset.id == 0) {
+      this.setData({
+        swiperHeight: this.data.heightTemp[0]
+      })
+    }
   },
   preview(e) {
     wx.previewImage({
@@ -77,43 +82,64 @@ Page({
     })
   },
 
-  checkLikes(cb) {
+  checkLikes(cb, onload) {
+    if (!app.globalData.openid) {
+      onload != 'onload' && this.onGetOpenid()
+      return
+    }
+
     db.collection('likes').where({
       _openid: app.globalData.openid
     }).get({
       success: res => {
-        console.log(res, '查询likes')
         this.data.likes = res.data
+        if (res.data.length) {
+          this.setData({
+            liked: !!res.data.filter(item => item.likeId == this.data.likeId).length
+          })
+        }
         cb && cb()
       }
     })
   },
   changeLikes() {
-    let likes = this.data.likes.filter(item => item.likeId == this.data.id)
+    let likes = this.data.likes.filter(item => item.likeId == this.data.likeId)
+
     if (likes.length) { // 执行不喜欢
-      console.log('执行不喜欢')
       db.collection('likes').doc(likes[0]._id).remove({
         success: res => {
-          console.log(res.data, '已经不喜欢')
-          this.setData({ liked: false})
+          this.setData({ liked: false, likes: []})
         }
       })
     } else {  // 执行喜欢
-      console.log('执行喜欢')
       db.collection('likes').add({
         data: {
-          likeId: this.data.id
+          likeId: this.data.likeId
         },
         success: res => {
-          console.log(res.data, '已经喜欢')
-          this.setData({ liked: true })
+          let likes = {
+            _id: res._id,
+            _openid: app.globalData.openid,
+            likeId: this.data.likeId
+          }
+          this.setData({ liked: true, likes: [likes] })
         }
       })
     }
-
+  },
+  likesController() {
+    if(this.data.likes) {
+      this.changeLikes()
+    } else {
+      this.checkLikes(this.changeLikes)
+    }
   },
   getUserInfo() {
     // 获取用户信息
+    if (app.globalData.userInfo) {
+      this.setData({ userInfo: app.globalData.userInfo })
+      return
+    }
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo']) {
@@ -138,7 +164,7 @@ Page({
   },
   onGetOpenid() {
     if (app.globalData.openid) {
-      this.changeLikes()
+      this.likesController()
       return
     }
     //
@@ -150,7 +176,7 @@ Page({
     }
     if (openid) {
       app.globalData.openid = openid
-      this.changeLikes()
+      this.likesController()
       return
     }
     // 调用云函数
@@ -165,7 +191,7 @@ Page({
           data: res.result.openid
         })
         app.globalData.openid = res.result.openid
-        this.changeLikes()
+        this.likesController()
       }
     })
   }
