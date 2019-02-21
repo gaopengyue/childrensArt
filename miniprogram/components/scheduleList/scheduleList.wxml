@@ -4,8 +4,14 @@
     <view class='img-wrap'><image src="{{item.data.list[0].image}}" mode='widthFix'></image></view>
     <view class='text'>{{item.data.list[0].desc}}</view>
     <view class='info'>
-      <view class='tag'>{{item.data.tag}}</view>
-      <view class=''>赞</view>
+      <view class='tag'>
+        <view>#</view>
+        {{item.data.tag}}
+      </view>
+      <view class='likes' bindtap='likes' data-id='{{item._id}}'>
+        <image src='/images/like.png'></image>
+        <view>123</view>
+      </view>
     </view>
   </view>
 </view>

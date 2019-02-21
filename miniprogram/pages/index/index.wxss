@@ -25,7 +25,7 @@
   color: #646464;
 }
 .nav-text view.on {
-  color: #ea4148;
+  color: #0084FF;
   font-weight: bold;
 }
 .line {
@@ -45,7 +45,7 @@
   margin: 0 36%;
   height: 100%;
   border-radius: 200rpx;
-  background-image: linear-gradient(to right,rgba(234, 65, 72, .5),rgba(234, 65, 72, 1))
+  background-image: linear-gradient(to right,rgba(0, 132, 255, 0.5),rgba(0, 132, 255, 1))
 }
 .content swiper {
   height: 100vh;

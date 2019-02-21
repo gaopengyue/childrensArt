@@ -13,17 +13,61 @@
   border-radius: 8rpx;
   overflow: hidden;
   transition: opacity .3s ease-in-out;
-  box-shadow: 0 0 16rpx 0 rgba(0,0,0,0.1);
+  box-shadow: 0 0 4rpx 0 rgba(0,0,0,0.05);
 }
 .schedule-list .item image {
 	width: 100%;
   display: block;
 }
 .schedule-list .item .img-wrap {
-  break-inside: avoid;
-  max-height: 450rpx;
+  max-height: 320rpx;
   overflow: hidden;
 }
 .schedule-list .item .text {
-
+  font-size: 28rpx;
+  color: #333;
+  padding: 10rpx 16rpx 0;
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-weight: bold;
+}
+.schedule-list .item .info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 22rpx;
+  color: #333;
+  padding: 0 16rpx;
+}
+.schedule-list .item .info .tag {
+  padding: 6rpx 20rpx;
+  background: rgba(0, 132, 255, 0.1);
+  color: #0084FF;
+  border-radius: 100rpx;
+  display: flex;
+  align-items: center;
+}
+.schedule-list .item .info .tag view {
+  width: 28rpx;
+  height: 28rpx;
+  text-align: center;
+  line-height: 28rpx;
+  background-image: linear-gradient(135deg,rgba(0, 132, 255, 0.5),rgba(0, 132, 255, 1));
+  border-radius: 50%;
+  color: #fff;
+  margin-right: 5rpx;
+}
+.schedule-list .item .info .likes {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+}
+.schedule-list .item .info .likes image {
+  width: 32rpx;
+  height: 32rpx;
+  padding-right: 6rpx;
 }

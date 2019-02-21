@@ -26,6 +26,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    likes(e) {
+      console.log(e.currentTarget.dataset.id)
+    }
   }
 })
