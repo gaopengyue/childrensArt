@@ -22,7 +22,15 @@
       </swiper-item>
       <swiper-item>
         <scroll-view scroll-y>
-          <schedule-list queryResult="{{likeList}}" isLike="1"></schedule-list>
+          <schedule-list wx:if="{{likeList && likeList.length}}" queryResult="{{likeList}}" isLike="1"></schedule-list>
+          <view class='login' wx:elif="{{!likeList}}">
+            <image src='/images/logo.jpg'></image>
+            <view>儿童艺术家</view>
+            <!-- <view class='tips'>成就孩子的艺术人生</view> -->
+            <view class='tips'>马云：未来孩子不学艺术将会没饭吃</view>
+            <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信快捷登录</button>
+          </view>
+          <view wx:else>没有收藏</view>
         </scroll-view>
       </swiper-item>
     </swiper>

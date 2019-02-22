@@ -25,7 +25,8 @@
   color: #646464;
 }
 .nav-text view.on {
-  color: #0084FF;
+  color: #333;
+  /* color: #faab00; */
   font-weight: bold;
 }
 .line {
@@ -45,7 +46,7 @@
   margin: 0 36%;
   height: 100%;
   border-radius: 200rpx;
-  background-image: linear-gradient(to right,rgba(0, 132, 255, 0.5),rgba(0, 132, 255, 1))
+  background-image: linear-gradient(to right,rgba(250, 171, 0, 0.5),#faab00)
 }
 .content swiper {
   height: 100vh;
@@ -55,4 +56,35 @@
   height: 100vh;
   padding-top: 102rpx;
   box-sizing: border-box;
+}
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: #fff;
+  margin-top: -102rpx;
+  box-sizing: border-box;
+  padding-bottom: 180rpx;
+}
+.login image {
+  width: 140rpx;
+  height: 140rpx;
+}
+.login view {
+  font-size: 36rpx;
+  color: #333;
+  padding-top: 32rpx;
+}
+.login .tips {
+  color: #666;
+  font-size: 24rpx;
+  padding: 20rpx 0 60rpx;
+}
+.login button {
+  background-color: #1aad19;
+  color: #fff;
+  font-size: 32rpx;
+  width: 500rpx;
 }

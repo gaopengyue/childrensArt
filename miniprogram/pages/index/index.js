@@ -10,7 +10,8 @@ Page({
     current: 0,
     queryResult: null,
     likes: null,
-    likeList: null
+    likeList: null,
+    userInfo: null
   },
 
   /**
@@ -80,6 +81,47 @@ Page({
         })
         let likeList = this.data.queryResult.filter(item => item.like)
         this.setData({ queryResult: this.data.queryResult, likeList })
+        console.log(likeList)
+      }
+    })
+  },
+  onGetUserInfo(e) {
+    if (e.detail.userInfo) {
+      app.globalData.userInfo = e.detail.userInfo
+      this.setData({ userInfo: e.detail.userInfo })
+      this.onGetOpenid()
+    }
+  },
+  onGetOpenid() {
+    if (app.globalData.openid) {
+      this.fetchLikes()
+      return
+    }
+    //
+    let openid;
+    try {
+      openid = wx.getStorageSync('artOpenId')
+    } catch (e) {
+      console.log(e)
+    }
+    if (openid) {
+      app.globalData.openid = openid
+      this.fetchLikes()
+      return
+    }
+    // 调用云函数
+    wx.showLoading({ title: '稍等哈~', })
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        wx.hideLoading()
+        wx.setStorage({ // openid存在本地
+          key: 'artOpenId',
+          data: res.result.openid
+        })
+        app.globalData.openid = res.result.openid
+        this.fetchLikes()
       }
     })
   }
