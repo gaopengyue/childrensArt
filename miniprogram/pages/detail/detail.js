@@ -1,5 +1,7 @@
 // miniprogram/pages/detail/detail.js
-const db = wx.cloud.database()
+const db = wx.cloud.database({
+  env: 'onlin-76a31e'
+})
 const app = getApp()
 Page({
 
@@ -30,18 +32,24 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '转发标题',
-      path: '/pages/detail/detail'
+      title: '儿童美术/创意手工/智力开发，开启宝贝艺术之路。',
+      path: '/pages/index/index'
     }
   },
   fetchDetail() {
     db.collection('artList').doc(this.data.likeId).get({
       success: res => {
-        this.setData({
-          detail: res.data.data.list,
+        let data = res.data.data
+        data.list.forEach(item => {
+          let desc = item.desc.split(/\n/g)
+          item.desc = desc
         })
+        this.setData({
+          detail: data.list
+        })
+        
         wx.setNavigationBarTitle({
-          title: res.data.data.tag
+          title: data.tag
         })
         this.checkLikes(null, 'onload')
       },
@@ -123,9 +131,23 @@ Page({
             likeId: this.data.likeId
           }
           this.setData({ liked: true, likes: [likes] })
+          this.addLikeCount()
         }
       })
     }
+  },
+  addLikeCount() {
+    const _ = db.command
+    db.collection('artList').doc(this.data.likeId).update({
+      data: {
+        data: {
+          likeCount: _.inc(1)
+        }
+      },
+      success(res) {
+        console.log(res.data)
+      }
+    })
   },
   likesController() {
     if(this.data.likes) {

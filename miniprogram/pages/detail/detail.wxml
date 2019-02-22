@@ -6,7 +6,9 @@
     </swiper-item>
   </swiper>
   <view class='dots'>{{current + 1}}/{{detail.length}}</view>
-  <view class='text'>{{detail[current].desc}}</view>
+  <view class='text'>
+    <view wx:for="{{detail[current].desc}}" wx:key="{{index}}">{{item}}</view>
+  </view>
   <view class='panel'>
     <button open-type='share' class='share'>
       <image src='/images/share.png'></image>

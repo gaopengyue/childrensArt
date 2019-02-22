@@ -1,4 +1,7 @@
 // miniprogram/pages/publisher/publisher.js
+const db = wx.cloud.database({
+  env: 'onlin-76a31e',
+})
 Page({
 
   /**
@@ -50,15 +53,12 @@ Page({
   },
   // 上传图片
   doUpload(filePath) {
-    console.log(filePath, 999)
     return wx.cloud.uploadFile({
       cloudPath: new Date().getTime() + filePath.match(/\.[^.]+?$/)[0],
       filePath
     })
   },
   submit() {
-    
-     
     let tasks = []
     let imgKey = Object.keys(this.data.images)
     if (!imgKey.length) {
@@ -88,7 +88,8 @@ Page({
     let imgKey = Object.keys(this.data.images)
     let res = {
       tag: this.data.tagArray[this.data.index],
-      list: []
+      list: [],
+      likeCount: 0
     }
     imgKey.forEach((key, index) => {
       let i = index + 1 + ''
@@ -101,11 +102,10 @@ Page({
     this.saveDB(res)
   },
   saveDB(data) {
-    const db = wx.cloud.database()
+    
     db.collection('artList').add({
       data: {
         data,
-        // userInfo: app.globalData.userInfo
       },
       success: res => {
         wx.showToast({ title: '发布成功' })

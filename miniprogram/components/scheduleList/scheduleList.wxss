@@ -74,3 +74,12 @@
 .is-like {
   column-count: initial;
 }
+.is-like .item .img-wrap {
+  max-height: 500rpx;
+}
+.is-like .item .info {
+  padding: 16rpx;
+}
+.is-like .item .info .likes image {
+  display: none;
+}

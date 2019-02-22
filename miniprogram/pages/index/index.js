@@ -1,6 +1,8 @@
 // miniprogram/pages/index/index.js
 const app = getApp()
-const db = wx.cloud.database()
+const db = wx.cloud.database({
+  env: 'onlin-76a31e'
+})
 Page({
 
   /**
@@ -11,7 +13,8 @@ Page({
     queryResult: null,
     likes: null,
     likeList: null,
-    userInfo: null
+    userInfo: null,
+    openid: ''
   },
 
   /**
@@ -51,7 +54,11 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+    return {
+      title: '儿童美术/创意手工/智力开发，开启宝贝艺术之路。',
+      path: '/pages/index/index',
+      // imageUrl: '', // 图片长宽比是 5:4
+    }
   },
   swiperChange(e) {
     this.setData({
@@ -80,7 +87,11 @@ Page({
           })
         })
         let likeList = this.data.queryResult.filter(item => item.like)
-        this.setData({ queryResult: this.data.queryResult, likeList })
+        this.setData({ 
+          likeList, 
+          queryResult: this.data.queryResult, 
+          openid: app.globalData.openid
+        })
         console.log(likeList)
       }
     })
