@@ -17,7 +17,7 @@
 }
 .text {
   padding: 28rpx;
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #333;
 }
 .panel {
