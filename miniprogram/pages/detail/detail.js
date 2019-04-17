@@ -32,17 +32,20 @@ Page({
   },
   onShareAppMessage () {
     return {
-      title: '儿童美术/创意手工/智力开发，开启宝贝艺术之路。',
+      title: '欣赏美的事物，能增加寿命。',
       path: '/pages/index/index'
     }
   },
   fetchDetail() {
     db.collection('artList').doc(this.data.likeId).get({
       success: res => {
+        console.log(res)
         let data = res.data.data
         data.list.forEach(item => {
-          let desc = item.desc.split(/\n/g)
-          item.desc = desc
+          if (item.desc) {
+            let desc = item.desc.split(/\n/g)
+            item.desc = desc
+          }
         })
         this.setData({
           detail: data.list
@@ -70,8 +73,9 @@ Page({
     })
   },
   swiperChange(e) {
+    let h = this.data.heightTemp[e.detail.current]
     this.setData({
-      swiperHeight: this.data.heightTemp[e.detail.current],
+      swiperHeight: h || 1000,
       current: e.detail.current
     })
   },

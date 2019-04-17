@@ -10,7 +10,7 @@ Page({
   data: {
     values: {},
     images: {},
-    tagArray: ['手工', '绘画', '折纸', '游戏'],
+    tagArray: ['艺术', '幽默', '秘密', '健身'],
     index: 0
   },
 

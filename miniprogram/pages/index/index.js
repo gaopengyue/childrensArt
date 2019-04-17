@@ -24,7 +24,7 @@ Page({
     db.collection('artList').limit(100).get({
       success: res => {
         this.setData({
-          queryResult: res.data
+          queryResult: res.data.reverse()
         })
         wx.getStorage({
           key: 'artOpenId',
@@ -55,9 +55,8 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '儿童美术/创意手工/智力开发，开启宝贝艺术之路。',
+      title: '欣赏美的事物，能增加寿命。',
       path: '/pages/index/index',
-      // imageUrl: '', // 图片长宽比是 5:4
     }
   },
   swiperChange(e) {

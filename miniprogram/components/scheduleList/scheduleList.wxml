@@ -1,8 +1,8 @@
 <!--components/scheduleList/scheduleList.wxml-->
 <view class="schedule-list {{isLike == 1 ? 'is-like' : ''}}">
   <navigator class='item' wx:for="{{queryResult}}" wx:key="{{index}}" url='/pages/detail/detail?id={{item._id}}'>
-    <view class='img-wrap'><image src="{{item.data.list[0].image}}" mode='widthFix'></image></view>
-    <view class='text'>{{item.data.list[0].desc}}</view>
+    <view class='img-wrap'><image src="{{item.data.list[0].image}}" mode='aspectFill'></image></view>
+    <!-- <view class='text'>{{item.data.list[0].desc}}</view> -->
     <view class='info'>
       <view class='tag'>
         <view>#</view>
@@ -11,7 +11,6 @@
       <view class='likes' bindtap='likes' data-id='{{item._id}}'>
         <image wx:if="{{item.like}}" src='/images/like_fill.png'></image>
         <image wx:else src='/images/like.png'></image>
-        <!-- <view>123</view> -->
       </view>
     </view>
   </navigator>

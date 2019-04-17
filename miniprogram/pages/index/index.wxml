@@ -17,6 +17,7 @@
       <swiper-item>
         <scroll-view scroll-y>
           <schedule-list queryResult="{{queryResult}}"></schedule-list>
+          <view class='tips'>图片来着网络，如有侵权请联系立即删除</view>
           <navigator wx:if="{{openid == 'o73kr5IpL8drYliKIp0h90rkZmI8'}}" url='/pages/publisher/publisher'>发布器</navigator>
         </scroll-view>
       </swiper-item>
@@ -24,11 +25,10 @@
         <scroll-view scroll-y>
           <schedule-list wx:if="{{likeList && likeList.length}}" queryResult="{{likeList}}" isLike="1"></schedule-list>
           <view class='login' wx:elif="{{!likeList}}">
-            <image src='/images/logo.jpg'></image>
-            <view>儿童艺术家</view>
-            <!-- <view class='tips'>成就孩子的艺术人生</view> -->
-            <view class='tips'>马云：未来孩子不学艺术将会没饭吃</view>
-            <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">微信快捷登录</button>
+            <!-- <image src='/images/logo.jpg'></image> -->
+            <view>美不胜收</view>
+            <view class='tips'>欣赏美好的事物可以延长寿命</view>
+            <button open-type="getUserInfo" bindgetuserinfo="onGetUserInfo">悄悄的登录</button>
           </view>
           <view wx:else class='empty'>
             <image src='/images/empty.png'></image>
